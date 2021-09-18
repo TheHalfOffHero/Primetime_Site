@@ -2,4 +2,9 @@ from django.contrib import admin
 from .models import post
 
 # Register your models here.
-admin.site.register(post)
+class PostAdmin(admin.ModelAdmin):
+    list_display = ('title', 'status', 'created_on')
+    list_filter = ("status",)
+    search_fields = ['title', 'content']
+
+admin.site.register(post, PostAdmin)
